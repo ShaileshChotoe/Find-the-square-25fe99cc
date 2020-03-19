@@ -13,35 +13,34 @@ class Application {
     }
 
     function update() {
-        echo 'CODE WERKT MAAR IK WIL DIT CLEANER MAKEN AUB NIET NAKEN ;)';
-        // for ($i=0; $i < count($this->characters) - 1; $i++) { 
-        //     for ($j=0; $j < count($this->characters[$i]) - 1; $j++) { 
-        //         $left_up = $this->characters[$i][$j];
-        //         $right_up = $this->characters[$i][$j + 1];
-        //         $left_down = $this->characters[$i + 1][$j];
-        //         $right_down = $this->characters[$i + 1][$j + 1];
-        //         // echo $left_up . $right_up . "\n";
-        //         // echo $left_down . $right_down . "\n";
-        //         if (($left_up == $right_down) && 
-        //         ($left_up == $right_up) && 
-        //         ($left_up == $left_down)) {
-        //             echo $this->characters[$i][$j] . " ($j,$i) \n";
-        //         } 
-        //     }
-        // }
+        for ($i=0; $i < count($this->characters) - 1; $i++) { 
+            for ($j=0; $j < count($this->characters[$i]) - 1; $j++) { 
+                if ($this->checkSquareInChars($this->getSquare($i, $j))) {
+                    echo $this->characters[$i][$j] . " ($j,$i) \n";
+                }
+            }
+        }
     }
 
-    function checkSquare() {
-
+    function getSquare($i, $j) {
+        $square = [];
+        $square[0] = $this->characters[$i][$j];
+        $square[1] = $this->characters[$i][$j + 1];
+        $square[2] = $this->characters[$i + 1][$j];
+        $square[3] = $this->characters[$i + 1][$j + 1];
+        return $square;
     }
 
-    function loopThroughIndexes() {
-
+    function checkSquareInChars($square) {
+        $topLeft = $square[0];
+        foreach ($square as $value) {
+            if ($topLeft != $value) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    function draw() {
- 
-    }
 }
 
 

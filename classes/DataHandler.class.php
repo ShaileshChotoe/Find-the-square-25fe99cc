@@ -5,13 +5,10 @@ class DataHandler {
     function getFileData() {
        return file_get_contents('assets/input.txt');
     }
-    
-    function init() {
-
-    }
 
     function trimCharacters() {
         $chars = $this->getFileData();
+        //echo "zoveel breeks : " . substr_count( $chars, "\n" );
         $trimmed = preg_replace( "/\r|\n/", "", $chars);
         return $trimmed;
     }
@@ -20,7 +17,9 @@ class DataHandler {
     function convertDataToArray() {
         $array = [];
         $data = $this->trimCharacters();
-        $rowLength = strlen($data) / 10;
+        $chars = $this->getFileData();
+        $breaks = substr_count( $chars, "\n" ) + 1;
+        $rowLength = strlen($data) / $breaks;
         for ($i = 0; $i < strlen($data); $i = $i + $rowLength) {
             $subArray = [];
             for ($j=$i; $j < $i + $rowLength; $j++) { 

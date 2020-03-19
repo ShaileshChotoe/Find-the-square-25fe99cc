@@ -13,9 +13,5 @@ class Program {
     function update() {
         $this->application->update();
     }
-
-    function draw() {
-        $this->application->draw();
-    }
 }
 ?>

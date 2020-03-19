@@ -7,6 +7,5 @@ include 'classes/Application.class.php';
 $program = new Program();
 $program->init();
 $program->update();
-$program->draw();
 
 ?>
